@@ -64,7 +64,7 @@ function getJuegosConFiltros($con, ?int $cat_id, ?int $plat_id): array
     // Usamos sentencias preparadas para seguridad, aunque solo filtremos por ID
     $sql = "
         SELECT 
-            v.id_vid, v.titulo, v.precio, v.imagen, cat.nombre AS categoria_nombre
+            v.id_vid, v.titulo, v.precio, v.imagen, cat.nombre AS cat_nombre
         FROM 
             videojuegos v
         INNER JOIN videojuegos_categorias vc ON v.id_vid = vc.videojuego_id

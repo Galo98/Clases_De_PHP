@@ -30,7 +30,7 @@ $juegos = getAllDestacados($conexion);
                 <li><a href="index.html" class="active">Inicio</a></li>
                 <li><a href="/views/catalogo.php">Catálogo</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
-                <li><a href="login.php">Iniciar Sesión</a></li>
+                <li><a href="/views/iniciarSesion.php">Iniciar Sesión</a></li>
             </ul>
         </nav>
     </header>

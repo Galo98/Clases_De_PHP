@@ -1,6 +1,10 @@
 <?php
 
 require_once "../models/juegos.models.php";
+require_once "../models/categoria.models.php";
+require_once "../models/plataforma.models.php";
+
+#region agruparJuegosPorCategoria
 
 function agruparJuegosPorCategoria(array $Juegos): array
 {
@@ -40,6 +44,9 @@ function agruparJuegosPorCategoria(array $Juegos): array
     return array_values($juegosAgrupados);
 }
 
+#endregion
+
+#region procesarCatalogo
 function procesarCatalogo($con): array
 {
 
@@ -72,3 +79,34 @@ function procesarCatalogo($con): array
 
     return $juegos;
 }
+#endregion
+
+#region procesarFiltros
+function procesarFiltros($con)
+{
+
+    $plats = getAllPlat($con);
+    $cats = getAllCat($con);
+
+?>
+    <li class="filter-item dropdown-toggle">
+        <button class="filter-btn">Categorías ▼</button>
+        <ul class="dropdown-menu">
+            <?php while ($c = mysqli_fetch_assoc($cats)) { ?>
+                <li><a href="/views/catalogo.php?cat=<?php echo $c['id_cat']; ?>"><?php echo $c['nombre']; ?></a></li>
+            <?php } ?>
+        </ul>
+    </li>
+
+    <li class="filter-item dropdown-toggle">
+        <button class="filter-btn">Plataformas ▼</button>
+        <ul class="dropdown-menu">
+            <?php while ($p = mysqli_fetch_assoc($plats)) { ?>
+                <li><a href="/views/catalogo.php?plat=<?php echo $p['id_plat'] ?>"><?php echo $p['nombre'] ?></a></li>
+            <?php } ?>
+        </ul>
+    </li>
+<?php
+
+}
+#endregion

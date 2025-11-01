@@ -104,6 +104,29 @@ CREATE TABLE ventas_detalle (
     FOREIGN KEY (videojuego_id) REFERENCES videojuegos (id_vid)
 );
 
+CREATE TABLE roles (
+    id_rol INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL UNIQUE,
+    descripcion VARCHAR(255) NULL
+);
+
+INSERT INTO roles (nombre) VALUES ('Administrador'), ('Cliente');
+
+CREATE TABLE usuarios (
+    id_usuario INT(11) NOT NULL AUTO_INCREMENT,
+    rol_id INT(11) NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    fec_alta TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    activo BOOLEAN DEFAULT TRUE,
+    PRIMARY KEY (id_usuario),
+    UNIQUE KEY uk_email (email),
+    FOREIGN KEY (rol_id) REFERENCES roles (id_rol)
+    ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
 -- drop database Game_Galaxy;
 
 -- DML Data Manipulation Language | Lenguaje de manipulación de datos

@@ -1,8 +1,8 @@
 <?php
 
 require_once "../config/conexion.php";
-require_once "../models/juegos.models.php";
-require_once "../controllers/juegos.controllers.php";
+require_once "../controllers/catalogo.controllers.php";
+
 $con = conDB();
 
 $juegos = procesarCatalogo($con);
@@ -34,7 +34,7 @@ $totales = count($juegos);
                 <li><a href="../index.php">Inicio</a></li>
                 <li><a href="/views/catalogo.php" class="active">Catálogo</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
-                <li><a href="login.php">Iniciar Sesión</a></li>
+                <li><a href="iniciarSesion.php">Iniciar Sesión</a></li>
             </ul>
         </nav>
     </header>
@@ -42,21 +42,7 @@ $totales = count($juegos);
     <nav class="filter-nav-floating">
         <ul class="filter-list">
 
-            <li class="filter-item dropdown-toggle">
-                <button class="filter-btn">Categorías ▼</button>
-                <ul class="dropdown-menu">
-                    <li><a href="/views/catalogo.php?cat=1">RPG</a></li>
-                    <li><a href="/views/catalogo.php?cat=2">FPS</a></li>
-                </ul>
-            </li>
-
-            <li class="filter-item dropdown-toggle">
-                <button class="filter-btn">Plataformas ▼</button>
-                <ul class="dropdown-menu">
-                    <li><a href="/views/catalogo.php?plat=1">PC</a></li>
-                    <li><a href="/views/catalogo.php?plat=2">PS5</a></li>
-                </ul>
-            </li>
+            <?php procesarFiltros($con); ?>
 
             <li class="filter-item">
                 <a href="/views/catalogo.php" class="btn-clean">Limpiar Filtros</a>

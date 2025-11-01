@@ -390,3 +390,125 @@ footer {
     /* Esta clase ya está definida en styles.css para 4 columnas */
     padding-top: 10px;
 }
+
+/* ==================================== */
+/* 7. FORMULARIO DE LOGIN / REGISTRO */
+/* ==================================== */
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    min-height: calc(100vh - 80px);
+}
+
+.login-box {
+    background-color: var(--steam-card-bg); /* Fondo oscuro de tarjeta */
+    border: 1px solid #333;
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 30px 40px;
+    width: 100%;
+    max-width: 400px; /* Ancho fijo para centrar el formulario */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.login-box h2 {
+    color: white;
+    font-size: 2em;
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--steam-accent-blue);
+    padding-bottom: 10px;
+}
+
+/* Grupos de formulario */
+.form-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    color: var(--steam-text-light);
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+/* Campos de entrada */
+.form-control {
+    width: 100%;
+    padding: 12px;
+    background-color: #1a2a3a; /* Fondo de campo ligeramente más claro que el fondo */
+    border: 1px solid #444;
+    color: white;
+    border-radius: 4px;
+    box-sizing: border-box; /* Crucial para que el padding no cambie el ancho */
+    transition: border-color 0.2s;
+}
+
+.form-control:focus {
+    border-color: var(--steam-accent-blue);
+    outline: none;
+}
+
+/* Botón de login */
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1em;
+    margin-top: 10px;
+    /* Usa el estilo de btn-primary ya definido */
+}
+
+/* Links adicionales */
+.login-links {
+    margin-top: 25px;
+    font-size: 0.9em;
+}
+
+.login-links a {
+    color: var(--steam-text-gray);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.login-links a:hover {
+    color: var(--steam-text-light);
+}
+
+.separator {
+    color: #555;
+    margin: 0 8px;
+}
+
+/* Mensaje de error (opcional) */
+.error-message {
+    background-color: #a83232;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+/* Estilo para mensajes de éxito */
+.success-message {
+    background-color: #28a745; /* Verde Bootstrap */
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-weight: 700;
+    text-align: center; /* Centrar el texto para mensajes de estado */
+}
+
+/* ==================================== */
+/* 7. AJUSTES PARA EL REGISTRO */
+/* ==================================== */
+
+/* Hacemos la caja de registro un poco más ancha para tantos campos */
+.login-box.registro-box {
+    max-width: 450px; /* Un poco más ancho que los 400px del login */
+    padding: 30px 45px;
+}
