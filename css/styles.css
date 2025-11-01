@@ -120,33 +120,66 @@ h2, h3 {
 
 
 /* ==================================== */
-/* 3. SECCIÓN HERO / BANNER */
+/* 3. SECCIÓN HERO / BANNER (MODIFICADO) */
 /* ==================================== */
 .hero {
-    background-color: #23425e; 
-    min-height: 380px;
+    /* 🖼️ INCLUIR IMAGEN DE FONDO */
+    background-image: url('../img//hero.avif'); /* << ¡Ajusta la ruta de la imagen! >> */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* ⚠️ Se quita el background-color sólido para dejar ver la imagen */
+    
+    min-height: 400px; /* Aumentamos la altura para lucir la imagen */
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start; 
+    align-items: flex-start;
     text-align: left;
-    color: white;
+    color: white; 
     padding: 50px;
     border-radius: 4px;
     margin-bottom: 35px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
     border-left: 5px solid var(--steam-text-gray); 
+    
+    /* Propiedades clave para el Overlay */
+    position: relative; 
+    overflow: hidden; 
+}
+
+/* 🌑 CAPA DE OSCURECIMIENTO (OVERLAY) */
+/* Debes agregar un <div> con la clase .hero-overlay dentro del <section class="hero"> en tu HTML */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Fondo semitransparente: Negro con 50% de opacidad */
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1; /* Estará sobre la imagen */
+}
+
+/* AJUSTES PARA EL CONTENIDO (Texto y Botón) */
+.hero h2,
+.hero p,
+.hero .btn-primary {
+    position: relative; /* Clave: Asegura que esté sobre el overlay */
+    z-index: 2; /* Mayor que el z-index del overlay */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Sombra para resaltar el texto */
 }
 
 .hero h2 {
-    font-size: 3.5em;
-    margin-bottom: 5px;
-    color: white;
+    font-size: 3.8em; /* Un poco más grande para destacar */
+    margin-bottom: 10px;
+    color: white; /* Aseguramos que sea blanco sobre el fondo oscuro */
 }
 
 .hero p {
-    font-size: 1.1em;
-    margin-bottom: 25px;
+    font-size: 1.3em; /* Un poco más grande */
+    margin-bottom: 30px;
     color: var(--steam-text-light);
 }
 
@@ -241,4 +274,119 @@ footer {
 .footer-links a {
     color: var(--steam-text-gray);
     margin: 0 10px;
+}
+
+/* ==================================== */
+/* 6. CATÁLOGO Y MENÚ DE FILTROS FLOTANTE */
+/* ==================================== */
+
+/* Contenedor del nav flotante */
+.filter-nav-floating {
+    background-color: var(--steam-card-bg); /* Fondo de tarjeta para que destaque */
+    padding: 10px 20px;
+    margin: 20px auto;
+    max-width: 1200px;
+    border-radius: 8px; /* Bordes redondeados solicitados */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.filter-list {
+    list-style: none;
+    display: flex;
+    gap: 30px; /* Espacio entre los filtros */
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.filter-item {
+    position: relative; /* Clave para posicionar el menú desplegable */
+}
+
+/* Botones principales de Categoría/Plataforma */
+.filter-btn {
+    background-color: var(--steam-accent-blue);
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background-color 0.2s;
+}
+
+.filter-btn:hover {
+    background-color: #5d8ab5;
+}
+
+/* Estilo para el botón de Limpiar Filtros */
+.btn-clean {
+    color: var(--steam-text-light);
+    font-size: 0.9em;
+    padding: 8px 0;
+    transition: color 0.2s;
+}
+
+.btn-clean:hover {
+    color: var(--steam-text-gray);
+}
+
+
+/* ------------------------------------- */
+/* MENÚ DESPLEGABLE (DROPDOWN) */
+/* ------------------------------------- */
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%; /* Aparece justo debajo del botón */
+    left: 0;
+    min-width: 180px;
+    background-color: #101c27; /* Fondo muy oscuro para el desplegable */
+    border: 1px solid #333;
+    border-radius: 4px;
+    list-style: none;
+    padding: 5px 0;
+    z-index: 100;
+    /* Ocultar por defecto (la clase 'show' lo mostrará con JS/PHP) */
+    display: none; 
+}
+
+/* Mostrar el menú con JS/PHP */
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-menu li a {
+    color: var(--steam-text-light);
+    padding: 8px 15px;
+    display: block;
+    white-space: nowrap; /* Evita que el texto del link se corte */
+}
+
+.dropdown-menu li a:hover {
+    background-color: var(--steam-accent-blue);
+    color: white;
+}
+
+/* ------------------------------------- */
+/* SECCIÓN CATÁLOGO ESPECÍFICA */
+/* ------------------------------------- */
+.catalogo-header {
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #2a475e;
+}
+
+.catalogo-header h2 {
+    font-size: 2.5em;
+    margin-bottom: 5px;
+}
+
+.catalogo-header p {
+    color: var(--steam-text-gray);
+}
+
+/* Asegurar que las tarjetas sigan el mismo patrón de 4 columnas */
+.featured-games.full-catalogo {
+    /* Esta clase ya está definida en styles.css para 4 columnas */
+    padding-top: 10px;
 }

@@ -109,6 +109,8 @@ CREATE TABLE ventas_detalle (
 -- DML Data Manipulation Language | Lenguaje de manipulación de datos
 -- Inserción de datos a cada tabla
 
+-- Le pedi a ChatGPt que me creara un set de datos a partir de las tablas creadas previamente. Me puso los precios en dolares o euros, por lo que desde la administración de juegos tendría que cambiarle el precio.
+
 INSERT INTO
     plataformas (nombre, fec_alta)
 VALUES ('PC', '2023-01-10'),
@@ -312,7 +314,8 @@ VALUES (101, 1),
     (105, 5);
 
 INSERT INTO
-    videojuegos_categorias (videojuego_id, categoria_id) values (105,2);
+    videojuegos_categorias (videojuego_id, categoria_id)
+values (105, 2);
 
 INSERT INTO
     clientes (
@@ -482,14 +485,15 @@ use Game_Galaxy;
 
 select * from videojuegos;
 
-SELECT v.id_vid, v.titulo, v.precio, v.imagen, cat.nombre FROM categorias cat INNER JOIN videojuegos_categorias vc ON cat.id_cat = vc.categoria_id INNER JOIN videojuegos v ON vc.videojuego_id = v.id_vid;
-
-SELECT
-    cat.nombre 
+SELECT v.id_vid, v.titulo, v.precio, v.imagen, cat.nombre
 FROM
     categorias cat
-INNER JOIN
-    videojuegos_categorias vc ON cat.id_cat = vc.categoria_id
+    INNER JOIN videojuegos_categorias vc ON cat.id_cat = vc.categoria_id
+    INNER JOIN videojuegos v ON vc.videojuego_id = v.id_vid;
+
+SELECT cat.nombre
+FROM
+    categorias cat
+    INNER JOIN videojuegos_categorias vc ON cat.id_cat = vc.categoria_id
 WHERE
     vc.videojuego_id = 105;
-

@@ -28,8 +28,7 @@ $juegos = getAllDestacados($conexion);
         <nav class="main-nav">
             <ul>
                 <li><a href="index.html" class="active">Inicio</a></li>
-                <li><a href="categorias.php">Categorías</a></li>
-                <li><a href="plataformas.php">Plataformas</a></li>
+                <li><a href="/views/catalogo.php">Catálogo</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
                 <li><a href="login.php">Iniciar Sesión</a></li>
             </ul>
@@ -39,9 +38,10 @@ $juegos = getAllDestacados($conexion);
     <main>
 
         <section class="hero">
+            <div class="hero-overlay"></div>
             <h2>Descubre tu Próxima Aventura</h2>
             <p>Explora miles de títulos para PC, Consolas y Móviles.</p>
-            <a href="videojuegos.php" class="btn-primary">Ver Catálogo Completo</a>
+            <a href="/views/catalogo.php" class="btn-primary">Ver Catálogo Completo</a>
         </section>
 
         <section class="featured-games">
@@ -76,7 +76,7 @@ $juegos = getAllDestacados($conexion);
                                         unset($categoria);
                                         echo $dat;
                                         ?></p>
-                        <p>Precio: <?php echo $juego['precio']; ?></p>
+                        <p>Precio: <?php echo "$ " . $juego['precio']; ?></p>
                         <a href="detalle.php?id=<?php echo $juego['id_vid']; ?>" class="btn-secondary">Ver Detalle</a>
                     </div>
                 </div>
