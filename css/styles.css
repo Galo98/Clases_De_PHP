@@ -512,3 +512,136 @@ footer {
     max-width: 450px; /* Un poco más ancho que los 400px del login */
     padding: 30px 45px;
 }
+
+/* ==================================== */
+/* 9. PÁGINAS DE ADMINISTRACIÓN / ALTA */
+/* ==================================== */
+
+/* Contenedor general de Admin (Reutilizamos login-container pero con nombre semántico) */
+.admin-container {
+    /* Mantén las propiedades de centrado del .login-container */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alineado arriba para formularios largos */
+    min-height: calc(100vh - 80px); 
+    padding: 40px 20px;
+}
+
+/* Caja del Formulario de Alta (Basado en .login-box) */
+.admin-box {
+    background-color: var(--steam-card-bg); 
+    border: 1px solid #333;
+    border-radius: 8px; 
+    padding: 30px 40px;
+    width: 100%;
+    max-width: 600px; /* Hacemos el formulario más ancho para la gestión de productos */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.admin-box h2 {
+    color: white;
+    font-size: 2em;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #5d8ab5; /* Un azul más suave que el principal */
+    padding-bottom: 10px;
+}
+
+/* Reutilizar estilos de form-group y form-control */
+.admin-form .form-group {
+    text-align: left;
+}
+
+/* Estilo específico para SELECT (Selectores Múltiples) */
+.form-control.select-multiple {
+    height: 150px; /* Altura que permita ver varias opciones */
+    resize: vertical; /* Permite al usuario redimensionar si es necesario */
+}
+
+.form-control.select-multiple option {
+    padding: 8px;
+}
+
+.form-control.select-multiple option:checked {
+    background-color: var(--steam-accent-blue);
+    color: white;
+}
+
+/* Estilo para campos de tipo 'file' (Input de imagen) */
+.form-control-file {
+    width: 100%;
+    display: block;
+    padding: 8px;
+    background-color: #1a2a3a;
+    border: 1px solid #444;
+    border-radius: 4px;
+    color: var(--steam-text-light);
+}
+
+/* Ajuste del botón para que ocupe todo el ancho */
+.admin-form .btn-primary {
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* Permite agrupar campos en la misma línea */
+.form-row {
+    display: flex;
+    gap: 20px; /* Espacio entre las columnas */
+    margin-bottom: 20px;
+}
+
+/* Columna que ocupa el 50% del ancho */
+.col-50 {
+    flex: 1; /* Hace que ambas columnas compartan el espacio por igual */
+}
+
+/* Estilo para el input de tipo date, forzando el color */
+.form-control[type="date"] {
+    color-scheme: dark; /* Mejora la visualización del calendario en modo oscuro */
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+/* --- Estilos para Checkboxes (Microtransacciones/Destacado) --- */
+
+.form-row-checks {
+    display: flex;
+    justify-content: space-around; /* Distribuye los checkboxes */
+    align-items: center;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+}
+
+.checkbox-group input[type="checkbox"] {
+    /* Estilos básicos para el checkbox */
+    width: 20px;
+    height: 20px;
+    accent-color: var(--steam-accent-blue); /* Color de marcado */
+    cursor: pointer;
+}
+
+.checkbox-group label {
+    margin-bottom: 0; /* Anula el margin-bottom de .form-group label */
+    font-weight: 400;
+    color: var(--steam-text-light);
+}
+
+/* Ajuste al botón de envío para que use la nueva clase si la definiste */
+.admin-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1em;
+    margin-top: 20px;
+    /* Asegúrate de que .btn-primary tenga un buen estilo */
+}

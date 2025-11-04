@@ -8,7 +8,7 @@ function getUserByEmail($con, string $email): ?array
         return null;
     }
 
-    $q = "SELECT id_usuario, nombre, apellido, email, password_hash, rol_id, activo FROM usuarios WHERE email = $email LIMIT 1;";
+    $q = "SELECT id_usuario, nombre, apellido, email, password_hash, rol_id, activo FROM usuarios WHERE email = '$email';";
 
     $datos = mysqli_query($con, $q);
 

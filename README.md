@@ -5,6 +5,7 @@ Repositorio que contendrá ejemplos básicos de programación a modo de introduc
 Para acceder al manual de [PHP](https://www.php.net/) hacer [click acá](https://www.php.net/);
 
 ---
+
 ---
 
 # Métodos HTTP Principales
@@ -19,7 +20,7 @@ Los métodos más comunes y esenciales se corresponden con las operaciones CRUD 
 
 > **_DELETE_**: Se emplea para eliminar un recurso específico del servidor.
 
-> **_PATCH_**: Similar a PUT, pero se usa para realizar actualizaciones parciales en un recurso existente, en lugar de reemplazarlo por completo. 
+> **_PATCH_**: Similar a PUT, pero se usa para realizar actualizaciones parciales en un recurso existente, en lugar de reemplazarlo por completo.
 
 ## Otros Métodos Importantes
 
@@ -29,13 +30,14 @@ Los métodos más comunes y esenciales se corresponden con las operaciones CRUD 
 
 > **_TRACE_**: Realiza un bucle de retorno de la solicitud para fines de prueba y diagnóstico.
 
-> **_CONNECT_**: Se usa para establecer un túnel a un servidor identificado por el recurso de destino. 
+> **_CONNECT_**: Se usa para establecer un túnel a un servidor identificado por el recurso de destino.
 
 ## Consideraciones
 
 Cada método define claramente la intención de la solicitud, lo que permite una interacción estructurada y estandarizada entre el cliente y el servidor, especialmente en el diseño de APIs RESTful.
 
 ---
+
 ---
 
 # Operador Ternario
@@ -60,7 +62,7 @@ La sintaxis básica del operador ternario es la siguiente:
 
 `:`: Separa las dos expresiones de resultado.
 
-`expresion_si_falso`: El valor o la expresión que se devuelve/ejecuta si la condición es falsa. 
+`expresion_si_falso`: El valor o la expresión que se devuelve/ejecuta si la condición es falsa.
 
 ## Ejemplo práctico (en JavaScript)
 
@@ -86,7 +88,9 @@ let estado = (edad >= 18) ? "Mayor de edad" : "Menor de edad";
 
 // estado ahora es "Mayor de edad"
 ```
+
 ---
+
 ---
 
 # Sentencias MySQLi Procedurales
@@ -104,75 +108,99 @@ $resultado = mysqli_prepare($con, $sql);
 
 ```
 
-*Función: mysqli_prepare()*
+_Función: mysqli_prepare()_
 
->Propósito: Le indica al servidor de la base de datos que prepare una sentencia SQL para su ejecución. Esta sentencia ($sql) contiene marcadores de posición (?) en lugar de los valores reales.
+> Propósito: Le indica al servidor de la base de datos que prepare una sentencia SQL para su ejecución. Esta sentencia ($sql) contiene marcadores de posición (?) en lugar de los valores reales.
 
->Parámetros: Recibe el recurso de conexión a la base de datos ($con) y la cadena de la consulta SQL ($sql).
+> Parámetros: Recibe el recurso de conexión a la base de datos ($con) y la cadena de la consulta SQL ($sql).
 
->Resultado: Devuelve un objeto de sentencia ($resultado) que se utiliza para todas las operaciones posteriores de vinculación y ejecución. Si la preparación falla (ej: la sintaxis SQL es incorrecta), devuelve false.
+> Resultado: Devuelve un objeto de sentencia ($resultado) que se utiliza para todas las operaciones posteriores de vinculación y ejecución. Si la preparación falla (ej: la sintaxis SQL es incorrecta), devuelve false.
 
 **2. Manejo de Errores de Preparación**
 
 `mysqli_error($con);`
 
-*Función: mysqli_error()*
+_Función: mysqli_error()_
 
->Propósito: Devuelve una cadena de texto que describe el último error ocurrido para la conexión proporcionada ($con).
+> Propósito: Devuelve una cadena de texto que describe el último error ocurrido para la conexión proporcionada ($con).
 
->Uso aquí: Se usa dentro de error_log() para registrar el motivo exacto por el cual la función mysqli_prepare pudo haber fallado.
+> Uso aquí: Se usa dentro de error_log() para registrar el motivo exacto por el cual la función mysqli_prepare pudo haber fallado.
 
 **3. Vincular los Parámetros**
+
 ```
 mysqli_stmt_bind_param($resultado, "ssssi", $nombre, $apellido, $email, $password_hash, $rol_id);
 ```
-*Función: mysqli_stmt_bind_param()*
 
->Propósito: Vincula las variables de PHP que contienen los valores de los datos a los marcadores de posición (?) definidos en la sentencia preparada ($resultado).
+_Función: mysqli_stmt_bind_param()_
 
->Parámetros: Recibe el objeto de sentencia ($resultado), una cadena de formato de tipos ("ssssi") que especifica el tipo de cada variable, y luego una lista de todas las variables en el orden en que aparecen los ? en la consulta.
+> Propósito: Vincula las variables de PHP que contienen los valores de los datos a los marcadores de posición (?) definidos en la sentencia preparada ($resultado).
 
->Seguridad: Este paso es crucial para la seguridad, ya que asegura que los valores se envíen al servidor por separado de la consulta, previniendo la Inyección SQL.
+> Parámetros: Recibe el objeto de sentencia ($resultado), una cadena de formato de tipos ("ssssi") que especifica el tipo de cada variable, y luego una lista de todas las variables en el orden en que aparecen los ? en la consulta.
+
+> Seguridad: Este paso es crucial para la seguridad, ya que asegura que los valores se envíen al servidor por separado de la consulta, previniendo la Inyección SQL.
 
 **4. Ejecutar la Sentencia**
 
 `mysqli_stmt_execute($resultado)`
 
-*Función: mysqli_stmt_execute()*
+_Función: mysqli_stmt_execute()_
 
->Propósito: Ejecuta la sentencia preparada ($resultado) en el servidor de la base de datos, enviando los valores previamente vinculados para realizar la inserción.
+> Propósito: Ejecuta la sentencia preparada ($resultado) en el servidor de la base de datos, enviando los valores previamente vinculados para realizar la inserción.
 
->Resultado: Devuelve true si la ejecución fue exitosa y false si hubo algún error (ej: intentar insertar un email duplicado).
+> Resultado: Devuelve true si la ejecución fue exitosa y false si hubo algún error (ej: intentar insertar un email duplicado).
 
 **5. Obtener el ID Generado**
 
 ` $insert_id = mysqli_insert_id($con);`
 
-*Función: mysqli_insert_id()*
+_Función: mysqli_insert_id()_
 
->Propósito: Devuelve el ID generado automáticamente por la última consulta INSERT ejecutada en la conexión ($con).
+> Propósito: Devuelve el ID generado automáticamente por la última consulta INSERT ejecutada en la conexión ($con).
 
->Uso aquí: Captura el valor de la columna id_usuario que MySQL generó automáticamente al registrar al nuevo usuario.
+> Uso aquí: Captura el valor de la columna id_usuario que MySQL generó automáticamente al registrar al nuevo usuario.
 
 **6. Cerrar la Sentencia**
 
 `mysqli_stmt_close($resultado);`
 
-*Función: mysqli_stmt_close()*
+_Función: mysqli_stmt_close()_
 
->Propósito: Libera los recursos del sistema y del servidor asociados a la sentencia preparada ($resultado), cerrándola.
+> Propósito: Libera los recursos del sistema y del servidor asociados a la sentencia preparada ($resultado), cerrándola.
 
->Buenas Prácticas: Es fundamental llamar a esta función después de que la sentencia ha terminado de usarse para liberar memoria y recursos.
+> Buenas Prácticas: Es fundamental llamar a esta función después de que la sentencia ha terminado de usarse para liberar memoria y recursos.
 
 **7. Manejo de Errores de Ejecución**
 
 `mysqli_stmt_error($resultado)`
 
-*Función: mysqli_stmt_error()*
+_Función: mysqli_stmt_error()_
 
->Propósito: Devuelve una cadena de texto que describe el último error ocurrido para la sentencia ($resultado) que se intentó ejecutar.
+> Propósito: Devuelve una cadena de texto que describe el último error ocurrido para la sentencia ($resultado) que se intentó ejecutar.
 
->Uso aquí: Se usa dentro del bloque else para registrar cualquier error específico que haya ocurrido durante la ejecución de la inserción (ej: violaciones de unicidad).
+> Uso aquí: Se usa dentro del bloque else para registrar cualquier error específico que haya ocurrido durante la ejecución de la inserción (ej: violaciones de unicidad).
 
 ---
+
 ---
+
+# Tipo MIME (Multipurpose Internet Mail Extensions)
+
+El Tipo MIME es un estándar utilizado para identificar el formato y la naturaleza de un documento, archivo o dato transmitido por Internet. Actúa como una etiqueta de dos partes que los navegadores y servidores utilizan para determinar cómo deben manejar o procesar un archivo.
+
+## Estructura
+
+Todos los Tipos MIME se componen de dos partes separadas por una barra `TipoPrincipal/Subtipo`.
+
+| Parte          | Función                                                                    | Ejemplos Comunes                |
+| -------------- | -------------------------------------------------------------------------- | ------------------------------- |
+| Tipo Principal | Define la categoría general del archivo (ej: texto, imagen, audio).        | text, image, application, video |
+| Subtipo        | Define el formato específico dentro de esa categoría (ej: HTML, PNG, PDF). | html, png, pdf, mp4, json       |
+
+## Importancia en PHP (Seguridad)
+
+En el contexto de la subida de archivos, verificar el Tipo MIME es una medida de seguridad crítica porque:
+
+**Fiabilidad**: A diferencia de la extensión del archivo (que el usuario puede renombrar fácilmente), el Tipo MIME reportado por el servidor (usando funciones como `mime_content_type()`) a menudo refleja el formato real del archivo.
+
+**Prevención**: Evita que usuarios malintencionados suban archivos ejecutables (`application/x-php` o `application/exe`) disfrazados de imágenes (`.jpg`), lo que podría comprometer el sistema.

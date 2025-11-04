@@ -1,7 +1,11 @@
 <?php
-require "config/conexion.php";
-require "models/juegos.models.php";
-require "models/categoria.models.php";
+
+session_start();
+
+require_once "config/conexion.php";
+require_once "models/juegos.models.php";
+require_once "models/categoria.models.php";
+
 
 $conexion = conDB();
 
@@ -27,10 +31,17 @@ $juegos = getAllDestacados($conexion);
         </div>
         <nav class="main-nav">
             <ul>
-                <li><a href="index.html" class="active">Inicio</a></li>
+                <li><a href="index.php" class="active">Inicio</a></li>
                 <li><a href="/views/catalogo.php">Catálogo</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-                <li><a href="/views/iniciarSesion.php">Iniciar Sesión</a></li>
+                <!--    <li><a href="contacto.html">Contacto</a></li> -->
+                <?php if (isset($_SESSION['user_rol'])) { 
+                        if ($_SESSION['user_rol'] == 1){ ?>
+                            <li><a href="/views/altaJuegos.php">Cargar Juego</a></li>
+                        <?php } ?>
+                    <li><a href="/views/iniciarSesion.php?c=CerrarSesion">Cerrar Sesión</a></li>
+                <?php } else { ?>
+                    <li><a href="/views/iniciarSesion.php">Iniciar Sesión</a></li>
+                <?php } ?>
             </ul>
         </nav>
     </header>

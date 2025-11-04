@@ -1,3 +1,23 @@
+<?php
+
+session_start();
+
+require_once "../config/conexion.php";
+require_once "../controllers/iniciarSesion.controllers.php";
+
+$con = conDB();
+$error = handleInicioUsuario($con);
+
+if (isset($_GET['registro'])) {
+    $success = $_GET['registro'];
+}
+
+
+if (isset($_GET['c']) && $_GET['c'] === 'exitoso') {
+    $success = "Se ha cerrado sesion";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -7,6 +27,15 @@
     <title>Game Galaxy | Iniciar Sesión</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <?php
+    if (isset($_SESSION['user_rol']) && !isset($_GET['c'])) {
+        $success = "Ya se ha iniciado sesión, redirigiendo ...";
+    ?>
+        <!-- Con esta etiqueta, logramos que se cargue la página y luego de 1 segundo, se haga la redirección al index. -->
+        <meta http-equiv="refresh" content="2; url=../index.php">
+    <?php } ?>
+
 </head>
 
 <body>
@@ -28,11 +57,11 @@
             <h2>Iniciar Sesión</h2>
 
             <?php
-            //if (isset($_GET['error'])) {
-            //    echo '<p class="error-message">' . htmlspecialchars('Registro exitoso') . '</p>';
-            //}
-            if (isset($_GET['registro'])) {
-                echo '<p class="success-message">' . htmlspecialchars('Registro exitoso') . '</p>';
+            if (isset($error) and $error == "c") {
+                echo '<p class="error-message">' . htmlspecialchars($error) . '</p>';
+            }
+            if (isset($success)) {
+                echo '<p class="success-message">' . htmlspecialchars($success) . '</p>';
             }
 
             ?>

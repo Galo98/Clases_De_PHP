@@ -39,6 +39,51 @@ CREATE TABLE requisitos (
     directx VARCHAR(20)
 );
 
+--
+-- Inserta un SET DE REQUISITOS MÍNIMOS (ID 1)
+--
+INSERT INTO
+    requisitos (
+        arquitect,
+        proc_min,
+        proc_max,
+        ram_min,
+        ram_max,
+        grafica_min,
+        grafica_max,
+        directx
+    )
+VALUES (
+        'x64',
+        'Intel Core i5-3570K o AMD FX-8310',
+        'N/A', -- No se especifica un máximo para el mínimo
+        '8 GB',
+        'N/A',
+        'NVIDIA GeForce GTX 780 o AMD Radeon R9 290',
+        'N/A',
+        'DirectX 12'
+    ),
+    (
+        'x64',
+        'Intel Core i7-4790 o AMD Ryzen 3 3200G',
+        'N/A',
+        '16 GB',
+        'N/A',
+        'NVIDIA GeForce GTX 1060 o AMD Radeon RX 580',
+        'N/A',
+        'DirectX 12'
+    ),
+    (
+        'x64',
+        'Intel Core i9-10900K o AMD Ryzen 9 5900X',
+        'N/A',
+        '32 GB',
+        'N/A',
+        'NVIDIA GeForce RTX 4080 o AMD Radeon RX 7900 XT',
+        'N/A',
+        'DirectX 12'
+    );
+
 CREATE TABLE videojuegos (
     id_vid INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(50) UNIQUE,
@@ -123,8 +168,7 @@ CREATE TABLE usuarios (
     activo BOOLEAN DEFAULT TRUE,
     PRIMARY KEY (id_usuario),
     UNIQUE KEY uk_email (email),
-    FOREIGN KEY (rol_id) REFERENCES roles (id_rol)
-    ON DELETE RESTRICT ON UPDATE CASCADE
+    FOREIGN KEY (rol_id) REFERENCES roles (id_rol) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- drop database Game_Galaxy;
