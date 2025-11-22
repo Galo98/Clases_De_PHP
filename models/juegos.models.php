@@ -50,6 +50,8 @@ function getJuegoById($conexion, $id)
     $q = "SELECT * FROM videojuegos where id_vid = $id";
 
     $juego = mysqli_query($conexion, $q);
+    
+    $juego = mysqli_fetch_assoc($juego);
 
     return $juego;
 }
@@ -217,3 +219,20 @@ function actualizarImagen($con, int $juego_id, string $ruta): bool
         return false;
     }
 }
+
+
+function modificarJuego($con,$id, $titulo, $desarrollador, $precio, $formato){
+
+    $sql = "update videojuegos set titulo = '$titulo', desarrollador = '$desarrollador', precio = $precio, formato = '$formato' where id_vid = $id;";
+
+    mysqli_query($con, $sql);
+
+    if (mysqli_affected_rows($con) > 0 ){
+        $mensaje = "modificado";
+    } else {
+        $mensaje = "Nmodificado";
+    }
+
+    return $mensaje;
+}
+
